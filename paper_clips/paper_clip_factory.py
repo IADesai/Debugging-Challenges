@@ -7,7 +7,7 @@ def generate_uuid():
     return uuid.uuid4()
 
 
-def produce_paper_clips(components, workers):
+def produce_paper_clips(production_time, components, workers):
     paper_clips_produced = 0
     while components > 0 and workers > 0:
         total_time = 0
@@ -23,10 +23,10 @@ def produce_paper_clips(components, workers):
 
         time.sleep(production_time)
 
-    return {'clips_produced': paper_clips_produced, 'time': total_time}
+    return paper_clips_produced, total_time
 
 
-def produce_components(raw_materials, workers):
+def produce_components(component_production_time, raw_materials, workers):
     components_produced = 0
     total_time = 0
     while raw_materials > 0 and workers > 0:
@@ -38,10 +38,10 @@ def produce_components(raw_materials, workers):
         components_produced += production_rate
         total_time += component_production_time
 
-        print(f'Component with ID {generate_id()} created')
+        print(f'Component with ID {generate_uuid()} created')
         time.sleep(component_production_time)
 
-    return {'time': total_time, 'comp_produced': components_produced}
+    return components_produced, total_time
 
 
 def manage_production(paper_clip_time, component_time, raw_materials, workers):
