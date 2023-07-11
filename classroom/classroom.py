@@ -10,8 +10,8 @@ class Student:
         if question in self.knowledge:
             answer = self.knowledge[question]
         else:
-            answer = random.choice(['I don't know', 'Maybe', 'I'm not sure'])
-        return f"{self.name} answers: {answer}. But I might be wrong."
+            answer = random.choice(["I don't know", "Maybe", "I'm not sure"])
+        return f"{self.name} answers: {answer}"
 
 
 class Teacher:
@@ -20,7 +20,7 @@ class Teacher:
         self.subject = subject
 
     def ask_question(self, question):
-        return f"{self.subject} ({self.name}) asks: {question}"
+        return f"{self.name} ({self.subject}) asks: {question}"
 
 
 class Classroom:
@@ -29,10 +29,10 @@ class Classroom:
         self.students = students
 
     def simulate_class(self, questions):
-        for question in range(len(questions)):
+        for question in questions:
             teacher_question = self.teacher.ask_question(question)
             print(teacher_question)
-            for student in self.students[1:]:
+            for student in self.students:
                 student_answer = student.answer_question(question)
                 print(student_answer)
 
